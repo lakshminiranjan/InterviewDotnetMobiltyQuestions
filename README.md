@@ -43,3 +43,9 @@ src/
 - users
 - emis
 - subscriptions
+
+## Troubleshooting blank screen
+- Ensure dependencies are installed: `npm install`.
+- Ensure `.env` exists with `EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY` (copy from `.env.example`).
+- Restart the Expo dev server after updating env vars.
+- If you use path aliases (`@/...`), make sure `babel-plugin-module-resolver` is installed.
