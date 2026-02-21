@@ -1,0 +1,11 @@
+/// <reference types="expo/types" />
+
+declare global {
+  namespace NodeJS {
+    interface ProcessEnv {
+      EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY: string;
+    }
+  }
+}
+
+export {};
