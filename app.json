@@ -1,0 +1,24 @@
+{
+  "expo": {
+    "name": "RupeeTrack",
+    "slug": "rupeetrack",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "assetBundlePatterns": ["**/*"],
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "package": "com.rupeetrack.app"
+    },
+    "web": {
+      "bundler": "metro"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "rupeetrack-prod"
+      }
+    }
+  }
+}
