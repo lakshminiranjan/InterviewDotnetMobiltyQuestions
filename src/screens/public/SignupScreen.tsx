@@ -6,6 +6,7 @@ import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { AppButton } from '@/components/AppButton';
 import { AppInput } from '@/components/AppInput';
 import { ScreenContainer } from '@/components/ScreenContainer';
+import { colors, radii, shadows, spacing } from '@/constants/theme';
 import { upsertUser } from '@/services/firestore';
 import type { AuthStackParamList } from '@/types/navigation';
 
@@ -35,13 +36,18 @@ export const SignupScreen = ({ navigation }: Props): JSX.Element => {
 
   return (
     <ScreenContainer>
-      <Text style={styles.title}>Create account</Text>
-      <AppInput label="Name" value={name} onChangeText={setName} />
-      <AppInput label="Email" value={email} onChangeText={setEmail} keyboardType="email-address" />
-      <AppInput label="Password" value={password} onChangeText={setPassword} secureTextEntry />
-      <AppButton label="Signup" onPress={() => void onSignup()} />
+      <View style={styles.hero}>
+        <Text style={styles.kicker}>Create account</Text>
+        <Text style={styles.title}>Join RupeeTrack</Text>
+      </View>
+      <View style={styles.card}>
+        <AppInput label="Name" value={name} onChangeText={setName} />
+        <AppInput label="Email" value={email} onChangeText={setEmail} keyboardType="email-address" />
+        <AppInput label="Password" value={password} onChangeText={setPassword} secureTextEntry />
+        <AppButton label="Signup" onPress={() => void onSignup()} />
+      </View>
       <View style={styles.row}>
-        <Text>Already have an account? </Text>
+        <Text style={styles.muted}>Already have an account? </Text>
         <Text style={styles.link} onPress={() => navigation.navigate('Login')}>
           Login
         </Text>
@@ -51,7 +57,19 @@ export const SignupScreen = ({ navigation }: Props): JSX.Element => {
 };
 
 const styles = StyleSheet.create({
-  title: { fontSize: 28, fontWeight: '700' },
-  row: { flexDirection: 'row' },
-  link: { color: '#1E88E5', fontWeight: '600' }
+  hero: { gap: spacing.xs, marginTop: spacing.lg },
+  kicker: { color: colors.primary, fontWeight: '600' },
+  title: { fontSize: 30, fontWeight: '800', color: colors.text },
+  card: {
+    gap: spacing.md,
+    padding: spacing.md,
+    borderRadius: radii.lg,
+    backgroundColor: colors.surface,
+    borderWidth: 1,
+    borderColor: colors.border,
+    ...shadows.soft
+  },
+  row: { flexDirection: 'row', justifyContent: 'center' },
+  muted: { color: colors.subText },
+  link: { color: colors.primary, fontWeight: '700' }
 });

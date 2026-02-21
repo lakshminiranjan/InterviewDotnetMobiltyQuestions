@@ -1,6 +1,6 @@
 import { StyleSheet, Text, TextInput, View } from 'react-native';
 
-import { colors, spacing } from '@/constants/theme';
+import { colors, radii, spacing } from '@/constants/theme';
 
 interface Props {
   label: string;
@@ -24,14 +24,16 @@ const styles = StyleSheet.create({
   },
   label: {
     color: colors.text,
-    fontWeight: '500'
+    fontWeight: '600'
   },
   input: {
     borderWidth: 1,
     borderColor: colors.border,
-    borderRadius: 12,
+    borderRadius: radii.md,
+    backgroundColor: colors.surface,
     paddingHorizontal: spacing.md,
     paddingVertical: spacing.sm,
-    color: colors.text
+    color: colors.text,
+    fontSize: 16
   }
 });

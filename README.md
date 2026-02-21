@@ -19,6 +19,10 @@ Production-ready starter for a personal finance app focused on EMI and subscript
    npm run start
    ```
 
+
+> Note: PNG binary assets are intentionally not committed in this repository to satisfy no-binary PR restrictions.
+> Add your own app icons/splash files locally if needed.
+
 ## Folder structure
 ```
 src/

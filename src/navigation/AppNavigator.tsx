@@ -1,7 +1,9 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { ActivityIndicator, StyleSheet, View } from 'react-native';
 import { useAuth } from '@clerk/clerk-expo';
 
+import { colors } from '@/constants/theme';
 import { AuthNavigator } from '@/navigation/AuthNavigator';
 import { TabNavigator } from '@/navigation/TabNavigator';
 import { AddEmiScreen } from '@/screens/stack/AddEmiScreen';
@@ -14,7 +16,15 @@ import type { RootStackParamList } from '@/types/navigation';
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 export const AppNavigator = (): JSX.Element => {
-  const { isSignedIn } = useAuth();
+  const { isSignedIn, isLoaded } = useAuth();
+
+  if (!isLoaded) {
+    return (
+      <View style={styles.loader}>
+        <ActivityIndicator color={colors.primary} size="large" />
+      </View>
+    );
+  }
 
   return (
     <NavigationContainer>
@@ -41,3 +51,12 @@ export const AppNavigator = (): JSX.Element => {
     </NavigationContainer>
   );
 };
+
+const styles = StyleSheet.create({
+  loader: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: colors.background
+  }
+});

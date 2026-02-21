@@ -1,7 +1,9 @@
-import { ClerkProvider, useAuth, useUser } from '@clerk/clerk-expo';
+import { ClerkLoaded, ClerkLoading, ClerkProvider, useAuth, useUser } from '@clerk/clerk-expo';
 import { StatusBar } from 'expo-status-bar';
 import { useEffect } from 'react';
+import { ActivityIndicator, View } from 'react-native';
 
+import { colors } from '@/constants/theme';
 import { AppNavigator } from '@/navigation/AppNavigator';
 import { upsertUser } from '@/services/firestore';
 import { tokenCache } from '@/services/tokenCache';
@@ -37,7 +39,14 @@ const App = (): JSX.Element => {
   return (
     <ClerkProvider tokenCache={tokenCache} publishableKey={publishableKey}>
       <StatusBar style="dark" />
-      <UserSync />
+      <ClerkLoading>
+        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: colors.background }}>
+          <ActivityIndicator color={colors.primary} size="large" />
+        </View>
+      </ClerkLoading>
+      <ClerkLoaded>
+        <UserSync />
+      </ClerkLoaded>
     </ClerkProvider>
   );
 };

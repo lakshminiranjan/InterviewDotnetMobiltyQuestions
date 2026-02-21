@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View } from 'react-native';
 
-import { colors, spacing } from '@/constants/theme';
+import { colors, radii, shadows, spacing } from '@/constants/theme';
 
 interface Props {
   title: string;
@@ -17,18 +17,22 @@ export const StatCard = ({ title, value }: Props): JSX.Element => (
 const styles = StyleSheet.create({
   card: {
     backgroundColor: colors.card,
-    borderRadius: 12,
+    borderRadius: radii.lg,
     padding: spacing.md,
     borderWidth: 1,
     borderColor: colors.border,
-    gap: spacing.xs
+    gap: spacing.xs,
+    ...shadows.soft
   },
   title: {
-    color: colors.subText
+    color: colors.subText,
+    fontSize: 13,
+    textTransform: 'uppercase',
+    letterSpacing: 0.6
   },
   value: {
     color: colors.text,
-    fontWeight: '700',
-    fontSize: 20
+    fontWeight: '800',
+    fontSize: 24
   }
 });

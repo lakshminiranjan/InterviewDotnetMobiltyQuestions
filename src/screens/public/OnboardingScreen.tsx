@@ -4,13 +4,13 @@ import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 
 import { AppButton } from '@/components/AppButton';
 import { ScreenContainer } from '@/components/ScreenContainer';
-import { colors } from '@/constants/theme';
+import { colors, radii, shadows, spacing } from '@/constants/theme';
 import type { AuthStackParamList } from '@/types/navigation';
 
 const slides = [
-  'Track all EMIs with clear due dates.',
-  'Manage subscriptions and monthly spending.',
-  'Get payment visibility and reminders in one app.'
+  'Track every EMI in one timeline with due reminders.',
+  'See all your subscriptions and prevent hidden monthly leakage.',
+  'Get a beautiful monthly overview and report charts instantly.'
 ];
 
 type Props = NativeStackScreenProps<AuthStackParamList, 'Onboarding'>;
@@ -29,8 +29,14 @@ export const OnboardingScreen = ({ navigation }: Props): JSX.Element => {
   return (
     <ScreenContainer>
       <View style={styles.wrapper}>
-        <Text style={styles.title}>Welcome to RupeeTrack</Text>
-        <Text style={styles.text}>{slides[index]}</Text>
+        <Text style={styles.badge}>RupeeTrack</Text>
+        <Text style={styles.title}>Control your money, elegantly.</Text>
+        <View style={styles.card}>
+          <Text style={styles.text}>{slides[index]}</Text>
+          <Text style={styles.progress}>
+            {index + 1} / {slides.length}
+          </Text>
+        </View>
         <AppButton label={index === slides.length - 1 ? 'Get Started' : 'Next'} onPress={onNext} />
       </View>
     </ScreenContainer>
@@ -38,7 +44,18 @@ export const OnboardingScreen = ({ navigation }: Props): JSX.Element => {
 };
 
 const styles = StyleSheet.create({
-  wrapper: { flex: 1, justifyContent: 'center', gap: 18 },
-  title: { fontSize: 26, fontWeight: '700', color: colors.text },
-  text: { color: colors.subText, fontSize: 16, lineHeight: 24 }
+  wrapper: { flex: 1, justifyContent: 'center', gap: spacing.md },
+  badge: { alignSelf: 'flex-start', color: colors.primary, backgroundColor: colors.primarySoft, padding: 8, borderRadius: radii.pill },
+  title: { fontSize: 32, fontWeight: '800', color: colors.text, lineHeight: 40 },
+  card: {
+    padding: spacing.lg,
+    borderRadius: radii.lg,
+    borderWidth: 1,
+    borderColor: colors.border,
+    backgroundColor: colors.surface,
+    gap: spacing.sm,
+    ...shadows.soft
+  },
+  text: { color: colors.subText, fontSize: 16, lineHeight: 24 },
+  progress: { color: colors.primary, fontWeight: '700' }
 });

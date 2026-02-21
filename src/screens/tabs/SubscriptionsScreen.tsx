@@ -5,6 +5,7 @@ import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 import { AppButton } from '@/components/AppButton';
 import { ScreenContainer } from '@/components/ScreenContainer';
+import { colors, radii, shadows, spacing } from '@/constants/theme';
 import { useFinanceData } from '@/hooks/useFinanceData';
 import type { RootStackParamList } from '@/types/navigation';
 import { formatCurrency } from '@/utils/format';
@@ -22,8 +23,10 @@ export const SubscriptionsScreen = (): JSX.Element => {
       {subscriptions.map((sub) => (
         <View key={sub.id} style={styles.card}>
           <Text style={styles.name}>{sub.name}</Text>
-          <Text>{formatCurrency(sub.amount)}</Text>
-          <Text>Billing: {sub.billingDate}</Text>
+          <Text style={styles.value}>{formatCurrency(sub.amount)}</Text>
+          <Text style={styles.meta}>
+            {sub.category} • Billing day {sub.billingDate}
+          </Text>
         </View>
       ))}
       {subscriptions.length === 0 && <Text style={styles.empty}>No subscriptions yet.</Text>}
@@ -32,7 +35,17 @@ export const SubscriptionsScreen = (): JSX.Element => {
 };
 
 const styles = StyleSheet.create({
-  card: { padding: 12, borderWidth: 1, borderColor: '#E2E8F0', borderRadius: 12, gap: 6 },
-  name: { fontWeight: '700' },
-  empty: { textAlign: 'center', color: '#64748B' }
+  card: {
+    padding: spacing.md,
+    borderWidth: 1,
+    borderColor: colors.border,
+    borderRadius: radii.lg,
+    gap: 6,
+    backgroundColor: colors.surface,
+    ...shadows.soft
+  },
+  name: { fontWeight: '700', fontSize: 16, color: colors.text },
+  value: { color: colors.primary, fontWeight: '700' },
+  meta: { color: colors.subText },
+  empty: { textAlign: 'center', color: colors.subText }
 });

@@ -14,7 +14,17 @@ export const TabNavigator = (): JSX.Element => (
   <Tab.Navigator
     screenOptions={({ route }) => ({
       tabBarActiveTintColor: colors.primary,
+      tabBarInactiveTintColor: colors.subText,
       headerStyle: { backgroundColor: colors.background },
+      headerShadowVisible: false,
+      tabBarStyle: {
+        backgroundColor: colors.surface,
+        borderTopColor: colors.border,
+        height: 64,
+        paddingBottom: 8,
+        paddingTop: 6
+      },
+      tabBarLabelStyle: { fontWeight: '600' },
       tabBarIcon: ({ color, size }) => {
         const icons: Record<string, keyof typeof Ionicons.glyphMap> = {
           Dashboard: 'home-outline',

@@ -9,19 +9,27 @@ type Props = NativeStackScreenProps<AuthStackParamList, 'Splash'>;
 
 export const SplashScreen = ({ navigation }: Props): JSX.Element => {
   useEffect(() => {
-    const timeout = setTimeout(() => navigation.replace('Onboarding'), 1200);
+    const timeout = setTimeout(() => navigation.replace('Onboarding'), 1100);
     return () => clearTimeout(timeout);
   }, [navigation]);
 
   return (
     <View style={styles.container}>
-      <Text style={styles.logo}>RupeeTrack</Text>
+      <Text style={styles.logo}>₹</Text>
+      <Text style={styles.name}>RupeeTrack</Text>
       <ActivityIndicator color={colors.primary} />
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  container: { flex: 1, alignItems: 'center', justifyContent: 'center', gap: 16, backgroundColor: '#fff' },
-  logo: { color: colors.primary, fontSize: 32, fontWeight: '700' }
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 10,
+    backgroundColor: colors.background
+  },
+  logo: { color: colors.primary, fontSize: 48, fontWeight: '800' },
+  name: { color: colors.text, fontSize: 28, fontWeight: '700' }
 });
